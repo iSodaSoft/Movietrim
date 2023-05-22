@@ -1,0 +1,30 @@
+{
+  "name": "Movietrim",
+  "description": "Netflix içerik filtreleme için Chrome eklentisi. ",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {},
+  "content_scripts": [
+    {
+      "matches": [
+				"http://www.netflix.com/*",
+				"https://www.netflix.com/*"
+      ],
+      "all_frames": true,
+      "js": ["contentScript.js", "vendor/toastify-js/toastify.js"],
+      "css": ["vendor/toastify-js/toastify.css"]
+    }
+  ],
+  "permissions": ["scripting"],
+	"web_accessible_resources": [{
+		"resources": ["injectableScript.js"],
+		"matches": [
+			"http://www.netflix.com/*",
+			"https://www.netflix.com/*"
+		]
+	}],
+	"host_permissions": ["<all_urls>"]
+}
